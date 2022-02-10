@@ -3,7 +3,12 @@ def inputFile(fileName):
     file=open(fileName, "wt");
     while True:
         line=input()
-        if not line:
+        if line.find(chr(26))!=-1:
+            line=line[:line.find(chr(26))]
+            file.write(line+"\n")
+            print("")
+            break
+        elif not line:
             break
         file.write(line+"\n")
     file.close()
@@ -11,8 +16,7 @@ def inputFile(fileName):
 #виведення текстового файлу
 def outputFile(fileName):
     file=open(fileName, "rt")
-    text=file.read()
-    print(text)
+    print(file.read())
     file.close()
 
 #редагування текстового файлу
@@ -23,7 +27,7 @@ def rewriteFile(initFile, editFile):
     count=0
     for line in iFile:
         count+=1
-        oFile.write(str(count)+". "+line[:len(line)-1]+" "+str(len(line)-1)+"\n")
+        oFile.write(str(count)+". "+line[:len(line)-1]+" len="+str(len(line)-1)+"\n")
     iFile.close()
     oFile.close()
 
